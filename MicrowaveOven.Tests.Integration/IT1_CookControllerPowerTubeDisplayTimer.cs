@@ -50,12 +50,7 @@ namespace MicrowaveOven.Tests.Integration
         }
         //Testet at når metoden StartCooking kaldes så bliver timer kaldet med korrekt tid. 
 
-        //[Test]
-        //public void OnTimerTick_TimeIs50_ShowTimeIsCalled()
-        //{
-        //   _sut.StartCooking(1,50);
-        //   _timer.TimerTick+=Raise.EventWith<new >()
-        //}
+
 
 
 
