@@ -12,7 +12,7 @@ using NUnit.Framework;
 namespace MicrowaveOven.Tests.Integration
 {
     [TestFixture]
-    public class IT2_UserInterfaceCookControllerLightDisplay
+    public class ITx_UserInterfaceCookControllerLightDisplay
     {
         private IOutput _output;
         private ILight _light;
@@ -41,12 +41,6 @@ namespace MicrowaveOven.Tests.Integration
             _cookController = new CookController(_timer, _display, _powerTube);
             _sut = new UserInterface(_powerButton, _timeButton, _startCancelButton, _door, _display, _light, _cookController);
         }
-
-        [Test]
-        public void test1()
-        {
-            
-
-        }
+        
     }
 }
