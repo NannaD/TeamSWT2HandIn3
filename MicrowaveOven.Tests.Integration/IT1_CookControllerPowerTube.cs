@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
-using MicrowaveOvenClasses.Interfaces;
+using MicrowaveOvenClasses.Interfaces; 
 using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
@@ -41,5 +41,27 @@ namespace MicrowaveOven.Tests.Integration
             _sut.StartCooking(_power, _time);
             _output.Received(1).OutputLine($"PowerTube works with {_power} %");
         }
+        // Vi har testet at der er forbindelse mellem CookController til power. Hvis power er 0, så får man fejlbesked om at power skal være mellem 0 og 100. 
+
+        [Test]
+        public void StartCooking_TimeIs50_TimeRemainingIs50()
+        {
+            _sut.StartCooking(1, 50);
+            Assert.That(_timer.TimeRemaining, Is.EqualTo(50));
+ 
+        }
+        //Testet at når metoden StartCooking kaldes så bliver timer kaldet med korrekt tid. 
+
+        //[Test]
+        //public void OnTimerTick_TimeIs50_ShowTimeIsCalled()
+        //{
+        //   _sut.StartCooking(1,50);
+        //   _timer.TimerTick+=Raise.EventWith<new >()
+        //}
+
+
+
+
+
     }
 }
