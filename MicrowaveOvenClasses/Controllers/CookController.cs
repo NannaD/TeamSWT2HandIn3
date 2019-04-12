@@ -63,8 +63,12 @@ namespace MicrowaveOvenClasses.Controllers
 
         public void OnTimerTick(object sender, EventArgs e)
         {
-            int remaining = myTimer.TimeRemaining;
-            myDisplay.ShowTime(remaining/60, remaining % 60);
+            //int remaining = myTimer.TimeRemaining;
+            //myDisplay.ShowTime(remaining / 60, remaining % 60);
+
+            var remaining = myTimer.TimeRemaining;
+            var time = TimeSpan.FromMilliseconds(remaining); 
+            myDisplay.ShowTime(time.Minutes, time.Seconds);
         }
     }
 }
