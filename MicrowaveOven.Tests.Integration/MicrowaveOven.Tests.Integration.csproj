@@ -62,7 +62,6 @@
     <Compile Include="IT6_UserInterfaceCookController.cs" />
     <Compile Include="IT7_CookControllerUserInterface.cs" />
     <Compile Include="IT6_UserInterfaceCookControllerAndOthers.cs" />
-    <Compile Include="ITx_UserInterfaceCookControllerLightDisplay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
