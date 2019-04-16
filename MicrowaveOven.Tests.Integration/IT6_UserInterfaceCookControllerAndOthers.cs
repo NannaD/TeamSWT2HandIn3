@@ -25,6 +25,7 @@ namespace MicrowaveOven.Tests.Integration
       private IButton _powerButton;
       private IButton _timeButton;
       private IDoor _door;
+      [SetUp]
       public void SetUp()
       {
          _output = Substitute.For<IOutput>();
@@ -36,15 +37,25 @@ namespace MicrowaveOven.Tests.Integration
          _timer = new Timer();
          _powerTube = new PowerTube(_output);
          _display = new Display(_output);
-         _sut=new UserInterface(_powerButton,_timeButton, _startButton, _door,_display,_light,_cookController);
-         _cookController = new CookController(_timer, _display, _powerTube, _sut);
+         _cookController = new CookController(_timer, _display, _powerTube);
+         _sut = new UserInterface(_powerButton, _timeButton, _startButton, _door, _display, _light, _cookController);
+
       }
 
+      //Denne skal væk tror jeg, det svarer til noget Nanna har lavet
       //[Test]
       //public void OnDoorOpened_EventIsRaised_OutputIsCalled()
       //{
       //   _door.Opened += Raise.EventWith(this, EventArgs.Empty);
       //   _output.Received(1).OutputLine("Light is turned on");
+      //}
+
+      //[Test]
+      //public void OnStartCancelPressed_EventRaised_OutputViaPowerTube()
+      //{
+      //   _startButton.Pressed+= Raise.EventWith(this, EventArgs.Empty);
+      //   _output.Received(1).OutputLine("Light is turned on");
+
       //}
    }
 }

@@ -35,9 +35,11 @@ namespace MicrowaveOvenClasses.Controllers
 
 
          door.Closed += new EventHandler(OnDoorClosed);
-            door.Opened += new EventHandler(OnDoorOpened);
+           // door.Opened += new EventHandler(OnDoorOpened);
+           door.Opened += OnDoorOpened;
 
-            myCooker = cooker;
+
+         myCooker = cooker;
             myLight = light;
             myDisplay = display;
         }
