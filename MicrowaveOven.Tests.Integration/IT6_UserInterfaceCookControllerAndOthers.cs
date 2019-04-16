@@ -42,20 +42,20 @@ namespace MicrowaveOven.Tests.Integration
 
       }
 
-      //Denne skal væk tror jeg, det svarer til noget Nanna har lavet
-      //[Test]
-      //public void OnDoorOpened_EventIsRaised_OutputIsCalled()
-      //{
-      //   _door.Opened += Raise.EventWith(this, EventArgs.Empty);
-      //   _output.Received(1).OutputLine("Light is turned on");
-      //}
+        //Denne skal væk tror jeg, det svarer til noget Nanna har lavet
+        [Test]
+        public void OnDoorOpened_EventIsRaised_OutputIsCalled()
+        {
+            _door.Opened += Raise.EventWith(this, EventArgs.Empty);
+            _output.Received(1).OutputLine("Light is turned on");
+        }
 
-      //[Test]
-      //public void OnStartCancelPressed_EventRaised_OutputViaPowerTube()
-      //{
-      //   _startButton.Pressed+= Raise.EventWith(this, EventArgs.Empty);
-      //   _output.Received(1).OutputLine("Light is turned on");
+        //[Test]
+        //public void OnStartCancelPressed_EventRaised_OutputViaPowerTube()
+        //{
+        //    _startButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+        //    _output.Received(1).OutputLine("Light is turned on");
 
-      //}
-   }
+        //}
+    }
 }

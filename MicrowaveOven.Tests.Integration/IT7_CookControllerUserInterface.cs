@@ -7,6 +7,7 @@ using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
 using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
+using NSubstitute.ReceivedExtensions;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
 
@@ -35,10 +36,11 @@ namespace MicrowaveOven.Tests.Integration
             _timeButton = Substitute.For<IButton>();
             _startCancelButton = Substitute.For<IButton>();
             _door = Substitute.For<IDoor>();
+            _timer = Substitute.For<ITimer>();
             _light = new Light(_output);
             _powerTube = new PowerTube(_output);
             _display = new Display(_output);
-            _timer = new Timer();
+            //_timer = new Timer();
             _sut = new CookController(_timer, _display, _powerTube);
             _userInterface = new UserInterface(_powerButton, _timeButton, _startCancelButton, _door, _display, _light, _sut);
         }
@@ -46,8 +48,11 @@ namespace MicrowaveOven.Tests.Integration
         //[Test]
         //public void CookingIsDone_RecieveOnTimerExpired_CookingIsDoneIsCalled()
         //{
-        //    _sut.OnTimerExpired(this,EventArgs.Empty);
-        //    _userInterface.Received(1).CookingIsDone();
-        //}
+
+        //    _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+            //_output.Received(1).OutputLine("Display cleared");
+            //_userInterface.CookingIsDone();
+            //_userInterface.Received(1).CookingIsDone();
+        }
     }
 }
