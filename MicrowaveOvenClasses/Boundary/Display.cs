@@ -7,7 +7,7 @@ namespace MicrowaveOvenClasses.Boundary
         private IOutput myOutput;
 
         public Display(IOutput output)
-        {
+         {
             myOutput = output;
         }
 
