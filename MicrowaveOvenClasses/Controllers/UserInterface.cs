@@ -16,8 +16,6 @@ namespace MicrowaveOvenClasses.Controllers
         private ICookController myCooker;
         private ILight myLight;
         private IDisplay myDisplay;
-       //tilføjet én linje nedenfor
-       private IDoor _door;
 
         private int powerLevel = 50;
         private int time = 1;
@@ -35,11 +33,9 @@ namespace MicrowaveOvenClasses.Controllers
             timeButton.Pressed += new EventHandler(OnTimePressed);
             startCancelButton.Pressed += new EventHandler(OnStartCancelPressed);
 
-           //Tilføjet én linje nedenfor
-           _door = door;
 
-         _door.Closed += new EventHandler(OnDoorClosed);
-            _door.Opened += new EventHandler(OnDoorOpened);
+         door.Closed += new EventHandler(OnDoorClosed);
+            door.Opened += new EventHandler(OnDoorOpened);
 
             myCooker = cooker;
             myLight = light;
