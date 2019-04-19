@@ -31,28 +31,26 @@ namespace MicrowaveOven.Tests.Integration
         [SetUp]
         public void Setup()
         {
-            _output = Substitute.For<IOutput>();
+            _output = new Output();
+            //_output = Substitute.For<IOutput>();
             _powerButton = Substitute.For<IButton>();
             _timeButton = Substitute.For<IButton>();
             _startCancelButton = Substitute.For<IButton>();
             _door = Substitute.For<IDoor>();
-            _timer = Substitute.For<ITimer>();
             _light = new Light(_output);
             _powerTube = new PowerTube(_output);
-            _display = new Display(_output);
-            //_timer = new Timer();
+            _display = Substitute.For<Display>(_output);
+            //_display = new Display(_output);
+            _timer = new Timer();
             _sut = new CookController(_timer, _display, _powerTube);
             _userInterface = new UserInterface(_powerButton, _timeButton, _startCancelButton, _door, _display, _light, _sut);
         }
 
-        //[Test]
-        //public void CookingIsDone_RecieveOnTimerExpired_CookingIsDoneIsCalled()
-        //{
-
-        //    _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
-            //_output.Received(1).OutputLine("Display cleared");
-            //_userInterface.CookingIsDone();
-            //_userInterface.Received(1).CookingIsDone();
+        [Test]
+        public void CookingIsDone_RecieveOnTimerExpired_CookingIsDoneIsCalled()
+        {
+            _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+            _display.Received(1).Clear();
         }
     }
 }
