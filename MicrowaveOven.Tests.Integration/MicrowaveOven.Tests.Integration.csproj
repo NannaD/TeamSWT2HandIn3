@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IT10_PowerTubeOutput.cs" />
+    <Compile Include="IT11_DisplayOutput.cs" />
     <Compile Include="IT1_CookControllerPowerTube.cs" />
     <Compile Include="IT2_CookControllerPowerTubeDisplay.cs" />
     <Compile Include="IT3_CookControllerPowerTubeDisplayTimer.cs" />
@@ -61,6 +63,7 @@
     <Compile Include="IT5_UserInterfaceDisplay.cs" />
     <Compile Include="IT7_CookControllerUserInterface.cs" />
     <Compile Include="IT6_UserInterfaceCookControllerAndOthers.cs" />
+    <Compile Include="IT9_LigthOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

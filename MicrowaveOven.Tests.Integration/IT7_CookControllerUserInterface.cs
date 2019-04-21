@@ -49,7 +49,10 @@ namespace MicrowaveOven.Tests.Integration
         [Test]
         public void CookingIsDone_RecieveOnTimerExpired_CookingIsDoneIsCalled()
         {
-            _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+            //_sut.StartCooking(1,50);
+
+            //_sut.OnTimerExpired(this,EventArgs.Empty);
+            //_timer.Expired += Raise.EventWith(this, EventArgs.Empty);
             _display.Received(1).Clear();
         }
     }
