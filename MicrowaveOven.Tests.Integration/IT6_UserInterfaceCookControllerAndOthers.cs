@@ -25,6 +25,7 @@ namespace MicrowaveOven.Tests.Integration
       private IButton _powerButton;
       private IButton _timeButton;
       private IDoor _door;
+
       [SetUp]
       public void SetUp()
       {
@@ -42,7 +43,7 @@ namespace MicrowaveOven.Tests.Integration
 
       }
 
-        //Denne skal væk tror jeg, det svarer til noget Nanna har lavet
+        //Denne tester ikke det rigtige
         [Test]
         public void OnDoorOpened_EventIsRaised_OutputIsCalled()
         {
@@ -50,12 +51,41 @@ namespace MicrowaveOven.Tests.Integration
             _output.Received(1).OutputLine("Light is turned on");
         }
 
-        //[Test]
-        //public void OnStartCancelPressed_EventRaised_OutputViaPowerTube()
-        //{
-        //    _startButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-        //    _output.Received(1).OutputLine("Light is turned on");
+      //Tror denne test er fin, men måske er der fundet en fejl som er grunden til at den fejler. 
+      //[Test]
+      //public void OnStartCancelPressed_EventRaised_OutputViaPowerTube()
+      //{
+      //   _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+      //   _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+      //   _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+      //   _startButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+      //   _output.Received(6).OutputLine(Arg.Any<string>());
+      //}
 
-        //}
-    }
+      [Test]
+      public void OnDoorOpen_EventRaised_CookingStops()
+      {
+         _door.Opened += Raise.EventWith(this, EventArgs.Empty);
+         _door.Closed += Raise.EventWith(this, EventArgs.Empty);
+         _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _startButton.Pressed += Raise.EventWith(this, EventArgs.Empty);   
+
+         _door.Opened += Raise.EventWith(this, EventArgs.Empty);
+         _output.Received(1).OutputLine($"PowerTube turned off"); 
+      }
+
+      [Test]
+      public void OnStartCancelPressed_EventRaised_CookingStops()
+      {
+         _door.Opened += Raise.EventWith(this, EventArgs.Empty);
+         _door.Closed += Raise.EventWith(this, EventArgs.Empty);
+         _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _startButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+         _startButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _output.Received(1).OutputLine($"PowerTube turned off");
+      }
+   }
 }
