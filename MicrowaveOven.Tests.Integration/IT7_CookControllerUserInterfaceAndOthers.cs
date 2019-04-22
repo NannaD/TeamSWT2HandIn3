@@ -42,10 +42,14 @@ namespace MicrowaveOven.Tests.Integration
          _userInterface = new UserInterface(_powerButton, _timeButton, _startButton, _door, _display, _light, _sut);
       }
 
+
+      //man kan ikke raise event med timeren som værende "ægte", så hvad vil vi gøre?
       //[Test]
-      //public OnTimerExpired_EventRaised_CookingIsDone()
+      //public void OnTimerExpired_EventRaised_CookingIsDone()
       //{
       //   _sut.UI = _userInterface;
+      //   _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+      //   _output.Received(1).OutputLine($"Display cleared"); 
       //}
    }
 }
