@@ -18,7 +18,7 @@ namespace MicrowaveOven.Tests.Integration
    class IT7_CookControllerUserInterfaceAndOthers
    {
       private IUserInterface _userInterface;
-      private CookController _sut; //Må jeg lave denne til ikke at være et interface? Ellers virker _sut.UI ikke
+      private CookController _sut;
       private ILight _light;
       private IPowerTube _powerTube;
       private IDisplay _display;
@@ -42,13 +42,14 @@ namespace MicrowaveOven.Tests.Integration
          _display = new Display(_output);
          _sut = new CookController(_timer, _display, _powerTube);
          _userInterface = new UserInterface(_powerButton, _timeButton, _startButton, _door, _display, _light, _sut);
+         _sut.UI = _userInterface;
+
       }
 
 
       [Test]
       public void CookingIsDone_TimeSetTo1Minute_DisplayClearedAfter61sek()
       {
-         _sut.UI = _userInterface;
          _door.Opened += Raise.EventWith(this, EventArgs.Empty);
          _door.Closed += Raise.EventWith(this, EventArgs.Empty);
          _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
