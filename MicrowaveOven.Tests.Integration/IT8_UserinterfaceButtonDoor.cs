@@ -41,6 +41,7 @@ namespace MicrowaveOven.Tests.Integration
             _display = new Display(_output);
             _cookController = new CookController(_timer, _display, _powerTube);
             _sut = new UserInterface(_powerButton, _timeButton, _startButton, _door, _display, _light, _cookController);
+            _cookController.UI = _sut;
         }
 
         [Test]
@@ -50,11 +51,72 @@ namespace MicrowaveOven.Tests.Integration
             _output.Received(1).OutputLine("Light is turned on");
         }
 
-        //[Test]
-        //public void PressPowerButton_OutputLineOK()
-        //{
-        //    _powerButton.Press();
-        //    _output.Received(1).OutputLine();
-        //}
+        [Test]
+        public void DoorClose_OutputLineOK()
+        {
+            _door.Open();
+            _door.Close();
+            _output.Received(1).OutputLine("Light is turned off");
+        }
+
+        [Test]
+        public void PressPowerButton_OutputLineOK()
+        {
+            _door.Open();
+            _door.Close();
+            _powerButton.Press();
+            _output.Received(1).OutputLine($"Display shows: 50 W");
+        }
+
+        [Test]
+        public void PressTimeButton_OutputLineOK()
+        {
+            _door.Open();
+            _door.Close();
+            _powerButton.Press();
+            _timeButton.Press();
+            _output.Received(1).OutputLine($"Display shows: 01:00");
+        }
+
+        [Test]
+        public void PressStartCancelButton_OutputLineOK()
+        {
+            _door.Open();
+            _door.Close();
+            _powerButton.Press();
+            _timeButton.Press();
+            _startButton.Press();
+            _output.Received(1).OutputLine($"PowerTube works with 50 %");
+        }
+
+        [Test]
+        public void OpenDoorTwice_PowerTubeOff_OutputLineOK()
+        {
+            _door.Open();
+            _door.Close();
+            _powerButton.Press();
+            _timeButton.Press();
+            _startButton.Press();
+
+            _door.Open();
+
+            _output.Received(1).OutputLine($"PowerTube turned off");
+
+        }
+
+        [Test]
+        public void PressStartCancelButtonWhileCooking_PowerTubeOff_OutputLineOK()
+        {
+            _door.Open();
+            _door.Close();
+            _powerButton.Press();
+            _timeButton.Press();
+            _startButton.Press();
+
+            _startButton.Press();
+
+            _output.Received(1).OutputLine($"PowerTube turned off");
+
+        }
     }
 }
