@@ -86,9 +86,9 @@ namespace MicrowaveOvenClasses.Controllers
                     myState = States.READY;
                     break;
                 case States.SETTIME:
-                    myDisplay.Clear();
+                    //myDisplay.Clear(); Denne udgår
                     myLight.TurnOn();
-                    myCooker.StartCooking(powerLevel, time*60);
+                    myCooker.StartCooking(powerLevel, time*60*1000); //Omregning fra sekunder til milisekunder
                     myState = States.COOKING;
                     break;
                 case States.COOKING:

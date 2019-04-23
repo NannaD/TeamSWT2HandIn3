@@ -61,7 +61,6 @@
     <Compile Include="IT3_CookControllerPowerTubeDisplayTimer.cs" />
     <Compile Include="IT4_UserInterfacerLight.cs" />
     <Compile Include="IT5_UserInterfaceDisplay.cs" />
-    <Compile Include="IT7_CookControllerUserInterface.cs" />
     <Compile Include="IT6_UserInterfaceCookControllerAndOthers.cs" />
     <Compile Include="IT7_CookControllerUserInterfaceAndOthers.cs" />
     <Compile Include="IT9_LigthOutput.cs" />

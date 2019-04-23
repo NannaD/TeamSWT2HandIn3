@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
@@ -9,6 +10,7 @@ using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+using Timer = MicrowaveOvenClasses.Boundary.Timer;
 
 namespace MicrowaveOven.Tests.Integration
 {
@@ -44,12 +46,20 @@ namespace MicrowaveOven.Tests.Integration
 
 
       //man kan ikke raise event med timeren som værende "ægte", så hvad vil vi gøre?
-      //[Test]
-      //public void OnTimerExpired_EventRaised_CookingIsDone()
-      //{
-      //   _sut.UI = _userInterface;
-      //   _timer.Expired += Raise.EventWith(this, EventArgs.Empty);
-      //   _output.Received(1).OutputLine($"Display cleared"); 
-      //}
+      [Test]
+      public void CookingIsDone_TimeSetTo1Minute_DisplayClearedAfter61sek()
+      {
+         //_timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+
+         _sut.UI = _userInterface;
+         _door.Opened += Raise.EventWith(this, EventArgs.Empty);
+         _door.Closed += Raise.EventWith(this, EventArgs.Empty);
+         _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         //_timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _startButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         Thread.Sleep(61000);
+         _output.Received(1).OutputLine($"Display cleared");
+      }
    }
 }
