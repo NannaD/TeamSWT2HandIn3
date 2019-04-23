@@ -51,18 +51,18 @@ namespace MicrowaveOven.Tests.Integration
             _output.Received(1).OutputLine("Light is turned on");
         }
 
-      //Tror denne test er fin, men måske er der fundet en fejl som er grunden til at den fejler. 
-      //[Test]
-      //public void OnStartCancelPressed_EventRaised_OutputViaPowerTube()
-      //{
-      //   _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-      //   _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-      //   _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-      //   _startButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-      //   _output.Received(6).OutputLine(Arg.Any<string>());
-      //}
+        //Tror denne test er fin, men måske er der fundet en fejl som er grunden til at den fejler. 
+        [Test]
+        public void OnStartCancelPressed_EventRaised_OutputViaPowerTube()
+        {
+            _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _startButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            _output.Received(6).OutputLine(Arg.Any<string>());
+        }
 
-      [Test]
+        [Test]
       public void OnDoorOpen_EventRaised_CookingStops()
       {
          _door.Opened += Raise.EventWith(this, EventArgs.Empty);
