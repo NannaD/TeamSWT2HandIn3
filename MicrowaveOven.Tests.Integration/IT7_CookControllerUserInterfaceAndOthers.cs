@@ -45,12 +45,9 @@ namespace MicrowaveOven.Tests.Integration
       }
 
 
-      //man kan ikke raise event med timeren som værende "ægte", så hvad vil vi gøre?
       [Test]
       public void CookingIsDone_TimeSetTo1Minute_DisplayClearedAfter61sek()
       {
-         //_timer.Expired += Raise.EventWith(this, EventArgs.Empty);
-
          _sut.UI = _userInterface;
          _door.Opened += Raise.EventWith(this, EventArgs.Empty);
          _door.Closed += Raise.EventWith(this, EventArgs.Empty);
