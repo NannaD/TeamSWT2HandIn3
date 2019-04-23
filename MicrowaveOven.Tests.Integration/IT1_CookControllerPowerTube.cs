@@ -43,5 +43,9 @@ namespace MicrowaveOven.Tests.Integration
         }
         // Vi har testet at der er forbindelse mellem CookController til power. Hvis power er 0, så får man fejlbesked om at power skal være mellem 0 og 100. 
 
+
+
+
+
     }
 }

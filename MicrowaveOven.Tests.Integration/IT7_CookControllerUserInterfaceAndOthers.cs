@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using MicrowaveOvenClasses.Boundary;
 using MicrowaveOvenClasses.Controllers;
@@ -9,6 +10,7 @@ using MicrowaveOvenClasses.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
 using NUnit.Framework.Internal;
+using Timer = MicrowaveOvenClasses.Boundary.Timer;
 
 namespace MicrowaveOven.Tests.Integration
 {
@@ -42,10 +44,19 @@ namespace MicrowaveOven.Tests.Integration
          _userInterface = new UserInterface(_powerButton, _timeButton, _startButton, _door, _display, _light, _sut);
       }
 
-      //[Test]
-      //public OnTimerExpired_EventRaised_CookingIsDone()
-      //{
-      //   _sut.UI = _userInterface;
-      //}
+
+      [Test]
+      public void CookingIsDone_TimeSetTo1Minute_DisplayClearedAfter61sek()
+      {
+         _sut.UI = _userInterface;
+         _door.Opened += Raise.EventWith(this, EventArgs.Empty);
+         _door.Closed += Raise.EventWith(this, EventArgs.Empty);
+         _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         //_timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _startButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         Thread.Sleep(61000);
+         _output.Received(1).OutputLine($"Display cleared");
+      }
    }
 }
