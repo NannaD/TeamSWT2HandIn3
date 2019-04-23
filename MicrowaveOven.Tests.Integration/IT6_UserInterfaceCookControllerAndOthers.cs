@@ -60,7 +60,14 @@ namespace MicrowaveOven.Tests.Integration
          _output.Received(4).OutputLine(Arg.Any<string>());
       }
 
-      //Evt lav en test af kun _startButton og med test af udskrift omkring power
+      [Test]
+      public void OnStartCancelPressed_EventRaised_OutputShowsPower()
+      {
+         _powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _startButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+         _output.Received(1).OutputLine($"PowerTube works with 50 %");
+      }
 
       [Test]
       public void OnDoorOpen_EventRaised_CookingStops()
